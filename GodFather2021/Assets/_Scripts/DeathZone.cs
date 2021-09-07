@@ -15,8 +15,10 @@ public class DeathZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameManager.instance.gameOver = true;
-        collision.gameObject.SetActive(false);
-        Debug.Log("You died !");
+        if (collision.tag == "Player")
+        {
+            GameManager.instance.GameOver();
+            Debug.Log("You died !");
+        }
     }
 }

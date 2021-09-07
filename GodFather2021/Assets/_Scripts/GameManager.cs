@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    public bool gameOver = false;
+    public bool isGameOver = false;
 
     public ScoreManager scoreManager;
     public UIManager uIManager;
@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isGameOver = false;
+
         if (scoreManager == null)
         {
             scoreManager = FindObjectOfType<ScoreManager>();
@@ -35,6 +37,24 @@ public class GameManager : MonoBehaviour
         if (uIManager == null)
         {
             uIManager = FindObjectOfType<UIManager>();
+        }
+    }
+
+    public void GameOver()
+    {
+        isGameOver = true;
+        uIManager.GameOver();
+    }
+
+    private void Update()
+    {
+
+        if (Application.isEditor)
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                GameOver();
+            }
         }
     }
 }

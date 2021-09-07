@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     private int currentScene;
     public GameObject hudUI;
     public GameObject pauseUI;
+
+    [Header("Game Over")]
     public GameObject gameOverUI;
+    public TMP_Text scoreText;
+    public TMP_Text bestScoreText;
+    public GameObject newBestScoreText;
+
     public bool isPaused = false;
 
     private void Start()
@@ -17,7 +24,7 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (currentScene != 0 && GameManager.instance.gameOver == false)
+        if (currentScene != 0 && GameManager.instance.isGameOver == false)
         {
             if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
             {
@@ -50,7 +57,13 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
-        //Save score
+        if(GameManager.instance.scoreManager.CompareScore())
+        {
+            newBestScoreText.SetActive(true);
+        }
+        scoreText.text = "Your Score : " + GameManager.instance.scoreManager.GetScore().ToString();
+        bestScoreText.text = "Best Score : " + GameManager.instance.scoreManager.GetBestScore().ToString();
+        pauseUI.SetActive(false);
         hudUI.SetActive(false);
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;

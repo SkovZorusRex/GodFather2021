@@ -24,30 +24,36 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Application.isEditor)
+        if (!GameManager.instance.isGameOver && !GameManager.instance.uIManager.isPaused)
         {
-            Debug.Log("Playing in Editor");
-            currentScore += 1;
-
-            if (Input.GetKeyDown(KeyCode.N))
+            if (Application.isEditor)
             {
-                CompareScore();
-            }
-        }
+                currentScore += 1;
 
-        currentScoreText.text = currentScore.ToString();
-        if (currentScore > bestScore)
-        {
-            bestScoreText.text = currentScore.ToString();
+                if (Input.GetKeyDown(KeyCode.N))
+                {
+                    CompareScore();
+                }
+            }
+
+            currentScoreText.text = currentScore.ToString();
+            if (currentScore > bestScore)
+            {
+                bestScoreText.text = currentScore.ToString();
+            }
         }
     }
 
-    public void CompareScore()
+    public bool CompareScore()
     {
         if (currentScore > bestScore)
         {
+            bestScore = currentScore;
             PlayerPrefs.SetInt("BestScore", currentScore);
+            return true;
         }
+        else
+            return false;
     }
 
     public int GetScore()
