@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && !isMoving)
+        if (Input.GetKey(KeyCode.UpArrow) && !isMoving && transform.position.y != 3.5f)
             StartCoroutine(MovePlayer(up));
-        if (Input.GetKey(KeyCode.DownArrow) && !isMoving)
+        if (Input.GetKey(KeyCode.DownArrow) && !isMoving && transform.position.y != -3.5f)
             StartCoroutine(MovePlayer(down));
     }
 
