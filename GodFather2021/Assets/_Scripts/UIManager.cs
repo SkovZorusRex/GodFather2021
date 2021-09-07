@@ -17,13 +17,16 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !isPaused && currentScene != 0) //&& pas gameover
+        if (currentScene != 0 && GameManager.instance.gameOver == false)
         {
-            Pause();
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
-        {
-            Resume();
+            if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+            {
+                Pause();
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+            {
+                Resume();
+            }
         }
     }
     public void Pause()
@@ -47,6 +50,7 @@ public class UIManager : MonoBehaviour
 
     public void GameOver()
     {
+        //Save score
         hudUI.SetActive(false);
         gameOverUI.SetActive(true);
         Time.timeScale = 0f;
@@ -54,9 +58,9 @@ public class UIManager : MonoBehaviour
 
     public void Restart()
     {
+        Debug.Log("Restarting");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
-        //Reset Scoring
     }
 
     public void QuitToMainMenu()
