@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Main Menu.unity
     guid: d46d2c723ec0010408bde17bab84dea5
   - enabled: 1
-    path: Assets/_Scenes/Bastien.unity
-    guid: 2ecd1263bb3994e4db0fd1f34c2f6676
+    path: Assets/_Scenes/Main.unity
+    guid: 1512eeb1f6e7ee44883574958e3e7d0f
   m_configObjects: {}
