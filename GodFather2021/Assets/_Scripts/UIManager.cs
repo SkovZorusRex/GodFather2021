@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject newBestScoreText;
 
     public bool isPaused = false;
+    private bool hasLaunchedCoroutine = false;
 
     private void Start()
     {
@@ -35,7 +36,7 @@ public class UIManager : MonoBehaviour
             {
                 Pause();
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && isPaused)
+            else if (Input.GetKeyDown(KeyCode.Space) && isPaused && !hasLaunchedCoroutine)
             {
                 Resume();
             }
@@ -100,6 +101,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator ResumeCountdown()
     {
+        hasLaunchedCoroutine = true;
         pauseCDText.gameObject.SetActive(true);
         pauseCDText.text = pauseCD.ToString();
         currentPauseCD = pauseCD;
@@ -111,6 +113,7 @@ public class UIManager : MonoBehaviour
         }
         pauseCDText.gameObject.SetActive(false);
         Time.timeScale = 1f;
+        hasLaunchedCoroutine = false;
         isPaused = false;
     }
 }
