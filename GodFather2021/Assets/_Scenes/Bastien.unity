@@ -2382,6 +2382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e257ecd53600fbd46b5e6196bc56ac43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplier: 1
+  pointsPerSec: 5
   currentScoreText: {fileID: 2012135730}
   bestScoreText: {fileID: 1203610282}
 --- !u!4 &1450130918

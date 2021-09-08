@@ -56,7 +56,6 @@ public class UIManager : MonoBehaviour
         Debug.Log("Unpause");
         pauseUI.SetActive(false);
         hudUI.SetActive(true);
-        //resume scoring
         StopCoroutine(ResumeCountdown());
         StartCoroutine(ResumeCountdown());
         //Time.timeScale = 1f;
