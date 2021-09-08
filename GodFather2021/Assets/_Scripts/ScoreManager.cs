@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
 {
     private int currentScore = 0;
     private int bestScore = 0;
+    private int multiplier = 1;
 
     public TMP_Text currentScoreText;
     public TMP_Text bestScoreText;
@@ -15,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        multiplier = 1;
         bestScore = PlayerPrefs.GetInt("BestScore");
         currentScore = 0;
         currentScoreText.text = currentScore.ToString();

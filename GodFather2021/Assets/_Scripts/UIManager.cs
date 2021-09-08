@@ -8,7 +8,12 @@ public class UIManager : MonoBehaviour
 {
     private int currentScene;
     public GameObject hudUI;
+
+    [Header("Pause UI")]
     public GameObject pauseUI;
+    public TMP_Text pauseCDText;
+    public float pauseCD;
+    private float currentPauseCD;
 
     [Header("Game Over")]
     public GameObject gameOverUI;
@@ -26,11 +31,11 @@ public class UIManager : MonoBehaviour
     {
         if (currentScene != 0 && GameManager.instance.isGameOver == false)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
+            if (Input.GetKeyDown(KeyCode.Space) && !isPaused)
             {
                 Pause();
             }
-            else if (Input.GetKeyDown(KeyCode.Escape) && isPaused)
+            else if (Input.GetKeyDown(KeyCode.Space) && isPaused)
             {
                 Resume();
             }
@@ -51,8 +56,10 @@ public class UIManager : MonoBehaviour
         pauseUI.SetActive(false);
         hudUI.SetActive(true);
         //resume scoring
-        Time.timeScale = 1f;
-        isPaused = false;
+        StopCoroutine(ResumeCountdown());
+        StartCoroutine(ResumeCountdown());
+        //Time.timeScale = 1f;
+        //isPaused = false;
     }
 
     public void GameOver()
@@ -89,5 +96,21 @@ public class UIManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    private IEnumerator ResumeCountdown()
+    {
+        pauseCDText.gameObject.SetActive(true);
+        pauseCDText.text = pauseCD.ToString();
+        currentPauseCD = pauseCD;
+        while (currentPauseCD > 0)
+        {
+            yield return new WaitForSecondsRealtime(1);
+            currentPauseCD -= 1;
+            pauseCDText.text = currentPauseCD.ToString();
+        }
+        pauseCDText.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+        isPaused = false;
     }
 }
