@@ -5,20 +5,40 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private bool isMoving;
+    private bool damaged;
+    public GameManager gameManager;
     private Vector3 originalPos, targetPos;
     private Vector3 up = new Vector3(0,3.5f,0);
     private Vector3 down = new Vector3(0, -3.5f, 0);
-    private float timeToMove = 0.2f;
+    private Vector3 left = new Vector3(-5.5f, 0, 0);
+    private Vector3 right = new Vector3(5.5f, 0, 0);
+    //private float timeToMove = 0.2f;
 
     void Update()
     {
         if (Input.GetKey(KeyCode.UpArrow) && !isMoving && transform.position.y != 3.5f)
-            StartCoroutine(MovePlayer(up));
+            StartCoroutine(MovePlayer(up, 0.2f));
         if (Input.GetKey(KeyCode.DownArrow) && !isMoving && transform.position.y != -3.5f)
-            StartCoroutine(MovePlayer(down));
+            StartCoroutine(MovePlayer(down, 0.2f));
+        if (Input.GetKey(KeyCode.A) && !isMoving && !damaged)
+            Damaged();
+        //else gameManager.GameOver();
     }
 
-    private IEnumerator MovePlayer(Vector3 direction)
+    void Damaged()
+    {
+        damaged = true;
+        StartCoroutine(MovePlayer(left, 0.2f));
+        Invoke("Recup", 3);
+    }
+
+    void Recup()
+    {
+        StartCoroutine(MovePlayer(right, 0.6f));
+        damaged = false;
+    }
+
+    private IEnumerator MovePlayer(Vector3 direction, float timeToMove)
     {
         isMoving = true;
 
