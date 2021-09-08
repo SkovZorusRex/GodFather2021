@@ -8,7 +8,8 @@ public class ScoreManager : MonoBehaviour
 {
     private float currentScore = 0;
     private float bestScore = 0;
-    private float multiplier = 1;
+    [SerializeField] private float multiplier = 2;
+    [SerializeField] private float pointsPerSec = 5;
 
     public TMP_Text currentScoreText;
     public TMP_Text bestScoreText;
@@ -30,18 +31,23 @@ public class ScoreManager : MonoBehaviour
         {
             if (Application.isEditor)
             {
-                currentScore += 1;
+                currentScore += (pointsPerSec * multiplier) * Time.deltaTime;
 
                 if (Input.GetKeyDown(KeyCode.N))
                 {
                     CompareScore();
                 }
             }
+            else
+            {
+                currentScore += (pointsPerSec * multiplier) * Time.deltaTime;
+            }
 
-            currentScoreText.text = currentScore.ToString();
+
+            currentScoreText.text = Mathf.RoundToInt(currentScore).ToString();
             if (currentScore > bestScore)
             {
-                bestScoreText.text = currentScore.ToString();
+                bestScoreText.text = Mathf.RoundToInt(currentScore).ToString();
             }
         }
     }
@@ -56,6 +62,16 @@ public class ScoreManager : MonoBehaviour
         }
         else
             return false;
+    }
+
+    public void AddScore(int amount)
+    {
+        currentScore += amount;
+    }
+
+    public void ChangeMultiplier(float newValue)
+    {
+        multiplier = newValue;
     }
 
     public int GetScore()
