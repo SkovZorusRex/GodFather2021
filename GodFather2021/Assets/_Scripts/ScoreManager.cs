@@ -6,8 +6,9 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    private int currentScore = 0;
-    private int bestScore = 0;
+    private float currentScore = 0;
+    private float bestScore = 0;
+    private float multiplier = 1;
 
     public TMP_Text currentScoreText;
     public TMP_Text bestScoreText;
@@ -15,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        multiplier = 1;
         bestScore = PlayerPrefs.GetInt("BestScore");
         currentScore = 0;
         currentScoreText.text = currentScore.ToString();
@@ -49,7 +51,7 @@ public class ScoreManager : MonoBehaviour
         if (currentScore > bestScore)
         {
             bestScore = currentScore;
-            PlayerPrefs.SetInt("BestScore", currentScore);
+            PlayerPrefs.SetInt("BestScore", Mathf.RoundToInt(currentScore));
             return true;
         }
         else
@@ -58,11 +60,11 @@ public class ScoreManager : MonoBehaviour
 
     public int GetScore()
     {
-        return currentScore;
+        return Mathf.RoundToInt(currentScore);
     }
 
     public int GetBestScore()
     {
-        return bestScore;
+        return Mathf.RoundToInt(bestScore);
     }
 }
