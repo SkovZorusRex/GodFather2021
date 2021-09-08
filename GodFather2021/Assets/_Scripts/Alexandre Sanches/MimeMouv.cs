@@ -16,7 +16,7 @@ public class MimeMouv : MonoBehaviour
     public Text uiLetters;
 
     public string newLetter;
-    public char letter;
+    public string letter;
 
 
     private void Start()
@@ -42,15 +42,14 @@ public class MimeMouv : MonoBehaviour
 
     private IEnumerator Reveal()
     {
-        uiLetters.text = "" + letter;
+        uiLetters.text = letter;
 
         if(newLetter != "")
         {
             yield return new WaitForSeconds(wait);
-            uiLetters.text = "" + newLetter;
+            uiLetters.text = newLetter;
+            EnemySysteme.Instance.UpdateSprite(newLetter, this.gameObject);
         }
-
-        Debug.Log(newLetter + letter);
 
         // Destruction du gomeObject après un certain temps
         yield return new WaitForSeconds(5);

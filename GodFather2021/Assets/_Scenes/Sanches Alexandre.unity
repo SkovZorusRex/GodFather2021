@@ -807,20 +807,24 @@ MonoBehaviour:
   - {fileID: 523959244}
   - {fileID: 2060402473}
   mimePrefab: {fileID: 4278061911273181536, guid: 3b51d2d4567d7ba47a7f72006399bc06, type: 3}
+  I_sprite: {fileID: 21300000, guid: 47f6fe1465876414eb2b20510ecb6622, type: 3}
+  O_sprite: {fileID: 21300000, guid: 2bb30b4dfd9000a419329fe20afe223b, type: 3}
+  U_sprite: {fileID: 21300000, guid: 258b17a3c840bf746849011550c13f48, type: 3}
+  Y_sprite: {fileID: 21300000, guid: e81adeb97964e6b4aa9b705285f6f241, type: 3}
   waveManagers:
   - description: 1ere vague, rapide
     timeBeforeWaveStart: 2
-    numberMime: 4
+    numberMime: 20
     timeBetweenMime: 0.5
     spawnPosition: 0
-    propChangeLetter: 0
+    propChangeLetter: 0.5
     haveSameLetter: 0
-  - description: 2eme vague, lente
-    timeBeforeWaveStart: 10
+  - description: bis continue
+    timeBeforeWaveStart: 0.2
     numberMime: 6
-    timeBetweenMime: 2
+    timeBetweenMime: 0.5
     spawnPosition: 3
-    propChangeLetter: 10
+    propChangeLetter: 0
     haveSameLetter: 1
 --- !u!4 &1136702035
 Transform:

@@ -12,5 +12,10 @@ public class PlyerInputTest : MonoBehaviour
         Physics.Raycast(transform.position, Vector3.right, out rayInfo);
 
         Debug.DrawRay(transform.position, Vector3.right * 10);
+
+        /*if (rayInfo.collider.gameObject.CompareTag("Ennemy"))
+        {
+            Debug.Log("touché")
+        }*/
     }
 }

@@ -14,7 +14,7 @@ public class WaveManager
     public int numberMime;
     public float timeBetweenMime;
     public int spawnPosition = 0;
-    [Range (0,10)]
+    [Range (0,1)]
     public float propChangeLetter = 0;
     public bool haveSameLetter;
 }

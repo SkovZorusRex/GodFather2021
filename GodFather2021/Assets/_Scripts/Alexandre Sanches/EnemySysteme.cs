@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class EnemySysteme : MonoBehaviour
 {
+    public static EnemySysteme Instance { get; private set; }
+
+
     [Header ("Paramètre de déploiement")]
     public Transform[] posPoint;
     public GameObject mimePrefab;
 
     private Transform spawnPoint;
 
-    private string letters = "AZER"; // ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    private char letterForUI;
+    private string letters = "IOUY"; // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    private string letterForUI;
+
+    [Header ("Sprite")]
+    public Sprite I_sprite;
+    public Sprite O_sprite;
+    public Sprite U_sprite;
+    public Sprite Y_sprite;
 
     [Header ("Waves")]
-    public WaveManager[] waveManagers; // class + constructeur
+    public WaveManager[] waveManagers;
 
     private void Start()
     {
+        Instance = this;
         StartCoroutine(StartWaves());
     }
 
@@ -42,18 +52,23 @@ public class EnemySysteme : MonoBehaviour
                 spawnPoint = posPoint[Random.Range(0, posPoint.Length)];
             }
             
+            // Création du mime sur la scène
             GameObject mimeInt = Instantiate(mimePrefab, spawnPoint);
+
+            // Choix aléatoir de la lettre et envoie l'info au mime
             if (!isSameLetter)
             {
                 letterForUI = ChoiseLetter();
             }
             mimeInt.GetComponent<MimeMouv>().letter = letterForUI;
+            UpdateSprite(letterForUI, mimeInt);
 
-
-            if(propChangeValue != 0 && Random.Range(0f,10f) <= propChangeValue)
+            // Chance de changer aléatoire de la lettre et envoie l'info au mime
+            if (propChangeValue != 0f && Random.Range(0f,1f) <= propChangeValue)
             {
-                Debug.Log(Random.Range(0f, 10f));
-                mimeInt.GetComponent<MimeMouv>().newLetter = ChoiseLetter() + "";
+                Debug.Log("changement");
+                string newletterForUI = ChoiseLetter();
+                mimeInt.GetComponent<MimeMouv>().newLetter = newletterForUI;
             }
 
             yield return new WaitForSeconds(timeBetween);
@@ -78,9 +93,30 @@ public class EnemySysteme : MonoBehaviour
 
 
     // Permet de choisir aléatoirement une lettre depuis une liste prédéfinie
-    private char ChoiseLetter()
+    public string ChoiseLetter()
     {
         char c = letters[Random.Range(0, letters.Length)];
-        return c; 
+        return c + "";
+    }
+
+
+    // Permet de changer le visuel du mime
+    public void UpdateSprite(string character, GameObject instant)
+    {
+        switch (character)
+        {
+            case "I":
+                instant.gameObject.GetComponent<SpriteRenderer>().sprite = I_sprite;
+                break;
+            case "O":
+                instant.gameObject.GetComponent<SpriteRenderer>().sprite = O_sprite;
+                break;
+            case "U":
+                instant.gameObject.GetComponent<SpriteRenderer>().sprite = U_sprite;
+                break;
+            case "Y":
+                instant.gameObject.GetComponent<SpriteRenderer>().sprite = Y_sprite;
+                break;
+        }
     }
 }
