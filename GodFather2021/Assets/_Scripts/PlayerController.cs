@@ -49,7 +49,14 @@ public class PlayerController : MonoBehaviour
         {
             SecondDamage();
         }
-        else
+        else if (isMovingVer)
+        {
+            transform.position = targetPos;
+            damaged = true;
+            StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
+            StartCoroutine(Recup(3));
+        }
+        else 
         {
             damaged = true;
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
