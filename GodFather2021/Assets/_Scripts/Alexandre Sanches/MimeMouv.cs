@@ -13,7 +13,6 @@ public class MimeMouv : MonoBehaviour
     [Header ("Mouvement")]
     public float speed = 5;
 
-    private Vector3 endRun;
     private Rigidbody2D rb;
     private Collider2D colliderMime;
 
@@ -25,6 +24,8 @@ public class MimeMouv : MonoBehaviour
     public string letter;
     public string newLetter;
     public Transform newLine;
+    private bool changeLine;
+    private Vector3 endPos;
 
 
     [Header("Death Settings")]
@@ -37,6 +38,7 @@ public class MimeMouv : MonoBehaviour
 
     private void Start()
     {
+        endPos = new Vector3(-transform.position.x*5, transform.position.y);
 
         rb = gameObject.GetComponent<Rigidbody2D>();
         colliderMime = gameObject.GetComponent<Collider2D>();
@@ -44,9 +46,6 @@ public class MimeMouv : MonoBehaviour
 
         // Remise à zero de l'UI
         uiLetters.text = "";
-
-        // Détermination de la position d'arriver
-        endRun = new Vector3(-transform.position.x, transform.position.y);
 
         // Début du décompt pour l'affichage de la lettre
         StartCoroutine(Reveal());
@@ -56,11 +55,17 @@ public class MimeMouv : MonoBehaviour
     {
         // Déplacement du mime
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, endRun, step);
+        transform.position = Vector3.MoveTowards(transform.position, endPos, step);
+
+        if (changeLine)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, newLine.position.y), step * 2);
+        }
 
         if(Input.inputString.Contains(letter) && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange && playerController.currentLane == currentLane)
         {
             Death();
+            ScoreManager.Instance.isMimeWasKick = true;
         }
         if (Application.isEditor && Input.GetKeyDown(KeyCode.E))
         {
@@ -72,10 +77,10 @@ public class MimeMouv : MonoBehaviour
     private IEnumerator Reveal()
     {
         uiLetters.text = letter.ToUpper();
+        yield return new WaitForSeconds(wait);
 
-        if(newLetter != "")
+        if (newLetter != "")
         {
-            yield return new WaitForSeconds(wait);
             uiLetters.text = newLetter.ToUpper();
             EnemySysteme.Instance.UpdateSprite(newLetter, this.gameObject);
             letter = newLetter;
@@ -83,19 +88,18 @@ public class MimeMouv : MonoBehaviour
 
         if(newLine != null)
         {
-            float step = speed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, newLine.position.y), step);
+            endPos = new Vector3(-transform.position.x, newLine.position.y);
+            changeLine = true;
         }
 
         // Destruction du gomeObject après un certain temps
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }
 
 
     public void Death()
     {
-        ScoreManager.Instance.isMimeWasKick = true;
         colliderMime.enabled = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 1;

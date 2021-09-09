@@ -16,5 +16,7 @@ public class WaveManager
     public int spawnPosition = 0;
     [Range (0,1)]
     public float propChangeLetter = 0;
+    [Range (0,1)]
+    public float propChangeLine = 0;
     public bool haveSameLetter;
 }

@@ -40,7 +40,7 @@ public class EnemySysteme : MonoBehaviour
     // Permet l'apparition d'un mime à partir d'un point aléatoire ou défini
     // timeBetween -> temps entre chaque mime si et seulement si nbMime est supérieur à 1
     // isSameSpawn -> 0 = aléatoire entre les spawn ; autre (1,2,3) = spawn préféfini selon la liste "posPoint"
-    private IEnumerator SpawnMime(int nbMime = 1, float timeBetween = 0, int isSameSpawn = 0, bool isSameLetter = false, float propChangeValue = 0, Transform newSpanwPoint = null)
+    private IEnumerator SpawnMime(int nbMime = 1, float timeBetween = 0, int isSameSpawn = 0, bool isSameLetter = false, float propChangeValue = 0, float propChangeLine = 0)
     {
         // Permet de définir si le spawn est aléatoir ou prédéfini
         if(isSameSpawn != 0)
@@ -51,8 +51,11 @@ public class EnemySysteme : MonoBehaviour
         // Si isSameLetter est vrai => ne changera pas
         letterForUI = ChoiseLetter();
 
+
         // Apparition des Mimes 
         for (int i = 0; i < nbMime;  i++){
+
+            // Spawn aléatoirement
             if (isSameSpawn == 0) {
                 spawnPoint = posPoint[Random.Range(0, posPoint.Length)];
             }
@@ -71,13 +74,21 @@ public class EnemySysteme : MonoBehaviour
             mimeMouv.letter = letterForUI;
             UpdateSprite(letterForUI, mimeInt);
 
-            // Chance de changer aléatoire de la lettre et envoie l'info au mime
-            if (propChangeValue != 0f && Random.Range(0f,1f) <= propChangeValue)
+
+
+            // Chance de changer aléatoire de la lettre et/ou l'emplacement + envoie l'info au mime
+            if (ChanceSwitch(propChangeValue))
             {
-                Debug.Log("changement");
                 string newletterForUI = ChoiseLetter();
                 mimeMouv.newLetter = newletterForUI;
             }
+
+            if (ChanceSwitch(propChangeLine))
+            {
+                Transform newSpawnPoint = posPoint[Random.Range(0, posPoint.Length)];
+                mimeMouv.newLine = newSpawnPoint;
+            }
+
 
             yield return new WaitForSeconds(timeBetween);
         }
@@ -85,6 +96,17 @@ public class EnemySysteme : MonoBehaviour
         // Autorisation de commencer la prochiane vague
     }
 
+
+    private bool ChanceSwitch(float chanceValue)
+    {
+        if (chanceValue != 0f && Random.Range(0f, 1f) <= chanceValue)
+        {
+            Debug.Log("true");
+            return true;
+        }
+        Debug.Log("false " + chanceValue);
+        return false;
+    }
 
 
     private IEnumerator StartWaves()
@@ -95,7 +117,7 @@ public class EnemySysteme : MonoBehaviour
             yield return new WaitForSeconds(waveInfo.timeBeforeWaveStart);
 
             // Vague en elle même
-            yield return StartCoroutine(SpawnMime(waveInfo.numberMime, waveInfo.timeBetweenMime, waveInfo.spawnPosition, waveInfo.haveSameLetter, waveInfo.propChangeLetter));
+            yield return StartCoroutine(SpawnMime(waveInfo.numberMime, waveInfo.timeBetweenMime, waveInfo.spawnPosition, waveInfo.haveSameLetter, waveInfo.propChangeLetter, waveInfo.propChangeLine));
         }
     }
 
