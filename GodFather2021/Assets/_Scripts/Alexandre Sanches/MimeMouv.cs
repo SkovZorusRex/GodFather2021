@@ -8,6 +8,8 @@ public class MimeMouv : MonoBehaviour
     public PlayerController playerController;
     public float playerInputRange = 2f;
 
+    public string currentLane;
+
     [Header ("Mouvement")]
     public float speed = 5;
 
@@ -53,7 +55,7 @@ public class MimeMouv : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, endRun, step);
 
-        if(Input.inputString.Contains(letter) && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange)
+        if(Input.inputString.Contains(letter) && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange && playerController.currentLane == currentLane)
         {
             Death();
         }

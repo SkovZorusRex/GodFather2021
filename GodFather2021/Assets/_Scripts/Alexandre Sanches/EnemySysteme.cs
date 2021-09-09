@@ -59,14 +59,16 @@ public class EnemySysteme : MonoBehaviour
             
             // Création du mime sur la scène
             GameObject mimeInt = Instantiate(mimePrefab, spawnPoint);
-            mimeInt.GetComponent<MimeMouv>().playerController = playerController;
+            MimeMouv mimeMouv = mimeInt.GetComponent<MimeMouv>();
+            mimeMouv.playerController = playerController;
+            mimeMouv.currentLane = spawnPoint.name;
 
             // Choix aléatoir de la lettre et envoie l'info au mime
             if (!isSameLetter)
             {
                 letterForUI = ChoiseLetter();
             }
-            mimeInt.GetComponent<MimeMouv>().letter = letterForUI;
+            mimeMouv.letter = letterForUI;
             UpdateSprite(letterForUI, mimeInt);
 
             // Chance de changer aléatoire de la lettre et envoie l'info au mime
@@ -74,7 +76,7 @@ public class EnemySysteme : MonoBehaviour
             {
                 Debug.Log("changement");
                 string newletterForUI = ChoiseLetter();
-                mimeInt.GetComponent<MimeMouv>().newLetter = newletterForUI;
+                mimeMouv.newLetter = newletterForUI;
             }
 
             yield return new WaitForSeconds(timeBetween);
