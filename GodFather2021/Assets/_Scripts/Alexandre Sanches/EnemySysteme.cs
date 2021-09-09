@@ -9,10 +9,12 @@ public class EnemySysteme : MonoBehaviour
     private PlayerController playerController;
 
     [Header ("Paramètre de déploiement")]
-    public Transform[] posPoint;
+    public List<Transform> posPoint;
     public GameObject mimePrefab;
 
     private Transform spawnPoint;
+    private List<Transform> spawnCanBeTake = new List<Transform>();
+    private int randomeSpawn;
 
     private string letters = "iouy"; // ABCDEFGHIJKLMNOPQRSTUVWXYZ
     private string letterForUI;
@@ -57,7 +59,8 @@ public class EnemySysteme : MonoBehaviour
 
             // Spawn aléatoirement
             if (isSameSpawn == 0) {
-                spawnPoint = posPoint[Random.Range(0, posPoint.Length)];
+                randomeSpawn = Random.Range(0, posPoint.Count);
+                spawnPoint = posPoint[randomeSpawn];
             }
             
             // Création du mime sur la scène
@@ -84,8 +87,23 @@ public class EnemySysteme : MonoBehaviour
             }
 
             if (ChanceSwitch(propChangeLine))
-            {
-                Transform newSpawnPoint = posPoint[Random.Range(0, posPoint.Length)];
+            {                
+                if(spawnCanBeTake != null)
+                {
+                    spawnCanBeTake.Clear();
+                }
+
+                // copy de la liste
+                foreach(Transform a in posPoint)
+                {
+                    if(a.name != mimeMouv.currentLane)
+                    {
+                        spawnCanBeTake.Add(a);
+                    }
+                }
+
+                // Nouveau spawn
+                Transform newSpawnPoint = spawnCanBeTake[Random.Range(0, spawnCanBeTake.Count)];
                 mimeMouv.newLine = newSpawnPoint;
             }
 
@@ -101,10 +119,8 @@ public class EnemySysteme : MonoBehaviour
     {
         if (chanceValue != 0f && Random.Range(0f, 1f) <= chanceValue)
         {
-            Debug.Log("true");
             return true;
         }
-        Debug.Log("false " + chanceValue);
         return false;
     }
 
@@ -133,19 +149,20 @@ public class EnemySysteme : MonoBehaviour
     // Permet de changer le visuel du mime
     public void UpdateSprite(string character, GameObject instant)
     {
+        SpriteRenderer sr = instant.gameObject.GetComponent<SpriteRenderer>();
         switch (character)
         {
             case "i":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = I_sprite;
+                sr.sprite = I_sprite;
                 break;
             case "o":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = O_sprite;
+                sr.sprite = O_sprite;
                 break;
             case "u":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = U_sprite;
+                sr.sprite = U_sprite;
                 break;
             case "y":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = Y_sprite;
+                sr.sprite = Y_sprite;
                 break;
         }
     }
