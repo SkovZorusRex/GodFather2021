@@ -39,14 +39,19 @@ public class PlayerController : MonoBehaviour
         {
             damaged = true;
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
-            Invoke("Recup", 3);
+            StartCoroutine(Recup(3));
         }
 
     }
 
-    void Recup()
+    public IEnumerator Recup(float timeToWait)
     {
-        if (!isMovingVer)
+        yield return new WaitForSeconds(timeToWait);
+        if (isMovingVer)
+        {
+            StartCoroutine(Recup(0.2f));
+        }
+        else
         {
             StartCoroutine(MovePlayerHorizontaly(right, 0.6f));
             damaged = false;
@@ -71,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = Vector3.Lerp(originalPos, targetPos, (elapsedTime / timeToMove));
             elapsedTime += Time.deltaTime;
-            yield return null; 
+            yield return null;
         }
 
         transform.position = targetPos;
