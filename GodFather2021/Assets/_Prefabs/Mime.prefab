@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.804}
+  m_AnchoredPosition: {x: 0, y: 3.42}
   m_SizeDelta: {x: 0.8316, y: 0.806}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6469466245161874902
@@ -199,10 +199,10 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 1.47}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.932, y: 2.982}
     newSize: {x: 1.932, y: 2.982}
     adaptiveTilingThreshold: 0.5
@@ -210,7 +210,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.05, y: 2.43}
+  m_Size: {x: 1.05, y: 1.16}
   m_EdgeRadius: 0
 --- !u!114 &4264931942307009878
 MonoBehaviour:
@@ -226,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   playerInputRange: 3
+  currentLane: 
   speed: 5
   wait: 1.5
   uiLetters: {fileID: 143315749274691440}

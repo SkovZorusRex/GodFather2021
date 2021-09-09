@@ -21,8 +21,11 @@ public class MimeMouv : MonoBehaviour
     public float wait = 1f;
     public Text uiLetters;
 
-    public string newLetter;
+    
     public string letter;
+    public string newLetter;
+    public Transform newLine;
+
 
     [Header("Death Settings")]
     public float maxUpForce;
@@ -78,14 +81,21 @@ public class MimeMouv : MonoBehaviour
             letter = newLetter;
         }
 
+        if(newLine != null)
+        {
+            float step = speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, newLine.position.y), step);
+        }
+
         // Destruction du gomeObject après un certain temps
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
 
+
     public void Death()
     {
-        Debug.Log("ouiiiiiiiiiii");
+        ScoreManager.Instance.isMimeWasKick = true;
         colliderMime.enabled = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 1;
