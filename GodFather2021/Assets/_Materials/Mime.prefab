@@ -58,7 +58,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &1343788953797854041
 MonoBehaviour:
@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
-  playerInputRange: 2
+  playerInputRange: 3
   speed: 5
-  wait: 2
+  wait: 1.5
   uiLetters: {fileID: 143315749274691440}
   newLetter: 
   letter: 0
