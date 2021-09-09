@@ -913,6 +913,8 @@ MonoBehaviour:
   pointsPerSec: 5
   currentScoreText: {fileID: 697375217}
   bestScoreText: {fileID: 872545517}
+  multiplierTime: 10
+  isMimeWasKick: 0
 --- !u!4 &222329540
 Transform:
   m_ObjectHideFlags: 0
@@ -11225,7 +11227,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.7765117, b: 0.6933962, a: 0.21176471}
+      maxColor: {r: 1, g: 0.7765117, b: 0.6933962, a: 0.11372549}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
