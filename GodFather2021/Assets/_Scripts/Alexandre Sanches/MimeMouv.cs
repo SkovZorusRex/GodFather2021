@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class MimeMouv : MonoBehaviour
 {
+    public PlayerController playerController;
+    public float playerInputRange = 2f;
+
     [Header ("Mouvement")]
     public float speed = 5;
 
@@ -29,8 +32,10 @@ public class MimeMouv : MonoBehaviour
 
     private void Start()
     {
+
         rb = gameObject.GetComponent<Rigidbody2D>();
         colliderMime = gameObject.GetComponent<Collider2D>();
+        colliderMime.isTrigger = true;
 
         // Remise à zero de l'UI
         uiLetters.text = "";
@@ -48,6 +53,10 @@ public class MimeMouv : MonoBehaviour
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, endRun, step);
 
+        if(Input.inputString.Contains(letter) && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange)
+        {
+            Death();
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Death();
@@ -57,13 +66,14 @@ public class MimeMouv : MonoBehaviour
 
     private IEnumerator Reveal()
     {
-        uiLetters.text = letter;
+        uiLetters.text = letter.ToUpper();
 
         if(newLetter != "")
         {
             yield return new WaitForSeconds(wait);
-            uiLetters.text = newLetter;
+            uiLetters.text = newLetter.ToUpper();
             EnemySysteme.Instance.UpdateSprite(newLetter, this.gameObject);
+            letter = newLetter;
         }
 
         // Destruction du gomeObject après un certain temps
@@ -80,5 +90,14 @@ public class MimeMouv : MonoBehaviour
 
         rb.AddForce(new Vector2(Random.Range(minUpForce,maxUpForce), Random.Range(-maxAngle,maxAngle)));
         rb.AddTorque(Random.Range(maxTorque, minTorque));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            playerController.Damaged();
+            Death();
+        }
     }
 }
