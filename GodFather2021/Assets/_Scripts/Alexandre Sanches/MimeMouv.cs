@@ -85,7 +85,7 @@ public class MimeMouv : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("ouiiiiiiiiiii");
+        ScoreManager.Instance.isMimeWasKick = true;
         colliderMime.enabled = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 1;
