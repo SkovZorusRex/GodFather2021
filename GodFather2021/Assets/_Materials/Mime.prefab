@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
-  playerInputRange: 2
+  playerInputRange: 3
   speed: 5
-  wait: 2
+  wait: 1.5
   uiLetters: {fileID: 143315749274691440}
   newLetter: 
   letter: 0
