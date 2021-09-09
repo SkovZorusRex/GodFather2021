@@ -47,18 +47,21 @@ public class PlayerController : MonoBehaviour
     {
         if (damaged)
         {
+            FindObjectOfType<AudioManager>().Play("Damage");
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             Invoke("SecondDamage", 0.5f);
         }
         else if (isMovingVer)
         {
             transform.position = targetPos;
+            FindObjectOfType<AudioManager>().Play("Damage");
             damaged = true;
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             StartCoroutine(Recup(3));
         }
         else 
         {
+            FindObjectOfType<AudioManager>().Play("Damage");
             damaged = true;
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             StartCoroutine(Recup(3));
