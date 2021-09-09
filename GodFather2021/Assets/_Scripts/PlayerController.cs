@@ -29,11 +29,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Damaged()
+    public void Damaged()
     {
-        damaged = true;
-        StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
-        Invoke("Recup", 3);
+        if (damaged)
+        {
+            SecondDamage();
+        }
+        else
+        {
+            damaged = true;
+            StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
+            Invoke("Recup", 3);
+        }
 
     }
 
