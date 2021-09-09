@@ -104,7 +104,7 @@ public class EnemySysteme : MonoBehaviour
             Debug.Log("true");
             return true;
         }
-        Debug.Log("false " + chanceValue);
+        //Debug.Log("false " + chanceValue);
         return false;
     }
 
