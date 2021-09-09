@@ -57,7 +57,7 @@ public class MimeMouv : MonoBehaviour
         {
             Death();
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Application.isEditor && Input.GetKeyDown(KeyCode.E))
         {
             Death();
         }
