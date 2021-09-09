@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private bool isMoving;
+    private bool isMovingVer;
+    private bool isMovingHor;
     private bool damaged;
     private Vector3 originalPos, targetPos;
     private Vector3 up = new Vector3(0, 3.5f, 0);
@@ -15,15 +16,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && !isMoving && transform.position.y != 3.5f)
-            StartCoroutine(MovePlayer(up, 0.2f));
-        if (Input.GetKey(KeyCode.DownArrow) && !isMoving && transform.position.y != -3.5f)
-            StartCoroutine(MovePlayer(down, 0.2f));
-        if (Input.GetKey(KeyCode.A) && !isMoving && !damaged)
+        if (Input.GetKey(KeyCode.UpArrow) && !isMovingVer && transform.position.y != 3.5f)
+            StartCoroutine(MovePlayerVerticaly(up, 0.2f));
+        if (Input.GetKey(KeyCode.DownArrow) && !isMovingVer && transform.position.y != -3.5f)
+            StartCoroutine(MovePlayerVerticaly(down, 0.2f));
+        if (Input.GetKey(KeyCode.A) && !isMovingVer && !damaged)
             Damaged();
-        else if (Input.GetKey(KeyCode.A) && damaged && !isMoving)
+        else if (Input.GetKey(KeyCode.A) && damaged && !isMovingVer)
         {
-            StartCoroutine(MovePlayer(left, 0.2f));
+            StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             Invoke("SecondDamage", 0.5f);
         }
     }
@@ -31,15 +32,18 @@ public class PlayerController : MonoBehaviour
     void Damaged()
     {
         damaged = true;
-        StartCoroutine(MovePlayer(left, 0.2f));
+        StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
         Invoke("Recup", 3);
 
     }
 
     void Recup()
     {
-        StartCoroutine(MovePlayer(right, 0.6f));
-        damaged = false;
+        if (!isMovingVer)
+        {
+            StartCoroutine(MovePlayerHorizontaly(right, 0.6f));
+            damaged = false;
+        }
     }
 
     void SecondDamage()
@@ -47,9 +51,9 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.GameOver();
     }
 
-    private IEnumerator MovePlayer(Vector3 direction, float timeToMove)
+    private IEnumerator MovePlayerVerticaly(Vector3 direction, float timeToMove)
     {
-        isMoving = true;
+        isMovingVer = true;
 
         float elapsedTime = 0;
 
@@ -65,8 +69,31 @@ public class PlayerController : MonoBehaviour
 
         transform.position = targetPos;
 
-        isMoving = false;
+        isMovingVer = false;
     }
+
+    private IEnumerator MovePlayerHorizontaly(Vector3 direction, float timeToMove)
+    {
+        isMovingVer = true;
+
+        float elapsedTime = 0;
+
+        originalPos = transform.position;
+        targetPos = originalPos + direction;
+
+        while (elapsedTime < timeToMove)
+        {
+            transform.position = Vector3.Lerp(originalPos, targetPos, (elapsedTime / timeToMove));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos;
+
+        isMovingVer = false;
+    }
+
+
 
     /* public Rigidbody2D rb;
     public float moveSpeed = 5;
