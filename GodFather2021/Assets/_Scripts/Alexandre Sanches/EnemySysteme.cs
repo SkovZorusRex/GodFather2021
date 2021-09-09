@@ -6,6 +6,7 @@ public class EnemySysteme : MonoBehaviour
 {
     public static EnemySysteme Instance { get; private set; }
 
+    private PlayerController playerController;
 
     [Header ("Paramètre de déploiement")]
     public Transform[] posPoint;
@@ -13,7 +14,7 @@ public class EnemySysteme : MonoBehaviour
 
     private Transform spawnPoint;
 
-    private string letters = "IOUY"; // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    private string letters = "iouy"; // ABCDEFGHIJKLMNOPQRSTUVWXYZ
     private string letterForUI;
 
     [Header ("Sprite")]
@@ -28,6 +29,10 @@ public class EnemySysteme : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        if (playerController == null)
+        {
+            playerController = FindObjectOfType<PlayerController>();
+        }
         StartCoroutine(StartWaves());
     }
 
@@ -54,6 +59,7 @@ public class EnemySysteme : MonoBehaviour
             
             // Création du mime sur la scène
             GameObject mimeInt = Instantiate(mimePrefab, spawnPoint);
+            mimeInt.GetComponent<MimeMouv>().playerController = playerController;
 
             // Choix aléatoir de la lettre et envoie l'info au mime
             if (!isSameLetter)
@@ -105,16 +111,16 @@ public class EnemySysteme : MonoBehaviour
     {
         switch (character)
         {
-            case "I":
+            case "i":
                 instant.gameObject.GetComponent<SpriteRenderer>().sprite = I_sprite;
                 break;
-            case "O":
+            case "o":
                 instant.gameObject.GetComponent<SpriteRenderer>().sprite = O_sprite;
                 break;
-            case "U":
+            case "u":
                 instant.gameObject.GetComponent<SpriteRenderer>().sprite = U_sprite;
                 break;
-            case "Y":
+            case "y":
                 instant.gameObject.GetComponent<SpriteRenderer>().sprite = Y_sprite;
                 break;
         }
