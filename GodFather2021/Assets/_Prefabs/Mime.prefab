@@ -227,7 +227,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerInputRange: 3
   currentLane: 
-  speed: 5
+  speed: 8
   wait: 1.5
   uiLetters: {fileID: 143315749274691440}
   newLetter: 
