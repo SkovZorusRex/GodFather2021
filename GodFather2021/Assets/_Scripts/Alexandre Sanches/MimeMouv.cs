@@ -85,6 +85,7 @@ public class MimeMouv : MonoBehaviour
     {
         Debug.Log("ouiiiiiiiiiii");
         colliderMime.enabled = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 1;
         rb.drag = 1;
 
