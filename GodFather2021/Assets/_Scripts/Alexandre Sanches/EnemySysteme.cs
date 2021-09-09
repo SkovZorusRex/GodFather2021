@@ -40,7 +40,7 @@ public class EnemySysteme : MonoBehaviour
     // Permet l'apparition d'un mime à partir d'un point aléatoire ou défini
     // timeBetween -> temps entre chaque mime si et seulement si nbMime est supérieur à 1
     // isSameSpawn -> 0 = aléatoire entre les spawn ; autre (1,2,3) = spawn préféfini selon la liste "posPoint"
-    private IEnumerator SpawnMime(int nbMime = 1, float timeBetween = 0, int isSameSpawn = 0, bool isSameLetter = false, float propChangeValue = 0)
+    private IEnumerator SpawnMime(int nbMime = 1, float timeBetween = 0, int isSameSpawn = 0, bool isSameLetter = false, float propChangeValue = 0, Transform newSpanwPoint = null)
     {
         // Permet de définir si le spawn est aléatoir ou prédéfini
         if(isSameSpawn != 0)
