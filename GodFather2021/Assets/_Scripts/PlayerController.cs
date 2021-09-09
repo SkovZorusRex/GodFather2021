@@ -8,17 +8,17 @@ public class PlayerController : MonoBehaviour
     private bool isMovingHor;
     private bool damaged;
     private Vector3 originalPos, targetPos;
-    private Vector3 up = new Vector3(0, 3.5f, 0);
-    private Vector3 down = new Vector3(0, -3.5f, 0);
+    private Vector3 up = new Vector3(0, 2.5f, 0);
+    private Vector3 down = new Vector3(0, -2.5f, 0);
     private Vector3 left = new Vector3(-5.5f, 0, 0);
     private Vector3 right = new Vector3(5.5f, 0, 0);
     //private float timeToMove = 0.2f;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !isMovingVer && transform.position.y != 3.5f)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !isMovingVer && transform.position.y != 1f)
             StartCoroutine(MovePlayerVerticaly(up, 0.2f));
-        if (Input.GetKeyDown(KeyCode.DownArrow) && !isMovingVer && transform.position.y != -3.5f)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !isMovingVer && transform.position.y != -4f)
             StartCoroutine(MovePlayerVerticaly(down, 0.2f));
         if (Input.GetKey(KeyCode.A) && !isMovingVer && !damaged)
             Damaged();

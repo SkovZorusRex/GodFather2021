@@ -9,6 +9,8 @@ public class BackgroundScroller : MonoBehaviour
     public Rigidbody2D rb;
 
     private float width;
+
+    [SerializeField]
     private float scrollSpeed = -2f;
 
     void Start()
