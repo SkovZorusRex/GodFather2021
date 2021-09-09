@@ -1337,6 +1337,7 @@ MonoBehaviour:
     timeBetweenMime: 1
     spawnPosition: 0
     propChangeLetter: 0
+    propChangeLine: 0
     haveSameLetter: 0
   - description: Spam1
     timeBeforeWaveStart: 1
@@ -1344,6 +1345,7 @@ MonoBehaviour:
     timeBetweenMime: 0.3
     spawnPosition: 1
     propChangeLetter: 0
+    propChangeLine: 0
     haveSameLetter: 1
   - description: vague2
     timeBeforeWaveStart: 1
@@ -1351,6 +1353,7 @@ MonoBehaviour:
     timeBetweenMime: 0.8
     spawnPosition: 0
     propChangeLetter: 0.2
+    propChangeLine: 0
     haveSameLetter: 0
   - description: spam2
     timeBeforeWaveStart: 1
@@ -1358,6 +1361,7 @@ MonoBehaviour:
     timeBetweenMime: 0.2
     spawnPosition: 1
     propChangeLetter: 0
+    propChangeLine: 0
     haveSameLetter: 1
   - description: spam3
     timeBeforeWaveStart: 1
@@ -1365,6 +1369,7 @@ MonoBehaviour:
     timeBetweenMime: 0.2
     spawnPosition: 2
     propChangeLetter: 0
+    propChangeLine: 0
     haveSameLetter: 1
   - description: 'Spam4
 
@@ -1374,6 +1379,7 @@ MonoBehaviour:
     timeBetweenMime: 0.2
     spawnPosition: 3
     propChangeLetter: 0.2
+    propChangeLine: 0
     haveSameLetter: 1
   - description: vague3
     timeBeforeWaveStart: 1
@@ -1381,6 +1387,7 @@ MonoBehaviour:
     timeBetweenMime: 0.8
     spawnPosition: 0
     propChangeLetter: 0.5
+    propChangeLine: 0
     haveSameLetter: 0
   - description: spam5
     timeBeforeWaveStart: 1
@@ -1388,6 +1395,7 @@ MonoBehaviour:
     timeBetweenMime: 0.2
     spawnPosition: 2
     propChangeLetter: 0
+    propChangeLine: 0
     haveSameLetter: 1
   - description: vague4
     timeBeforeWaveStart: 1
@@ -1395,6 +1403,7 @@ MonoBehaviour:
     timeBetweenMime: 0.6
     spawnPosition: 0
     propChangeLetter: 0.6
+    propChangeLine: 0
     haveSameLetter: 0
   - description: spam6
     timeBeforeWaveStart: 1
@@ -1402,6 +1411,7 @@ MonoBehaviour:
     timeBetweenMime: 0.2
     spawnPosition: 1
     propChangeLetter: 0
+    propChangeLine: 0
     haveSameLetter: 1
   - description: vague5
     timeBeforeWaveStart: 1
@@ -1409,6 +1419,7 @@ MonoBehaviour:
     timeBetweenMime: 0.4
     spawnPosition: 0
     propChangeLetter: 0.3
+    propChangeLine: 0
     haveSameLetter: 0
   - description: spam7
     timeBeforeWaveStart: 1
@@ -1416,6 +1427,7 @@ MonoBehaviour:
     timeBetweenMime: 0.2
     spawnPosition: 0
     propChangeLetter: 0
+    propChangeLine: 0
     haveSameLetter: 1
   - description: vague6
     timeBeforeWaveStart: 1
@@ -1423,6 +1435,7 @@ MonoBehaviour:
     timeBetweenMime: 0.35
     spawnPosition: 0
     propChangeLetter: 0.7
+    propChangeLine: 0
     haveSameLetter: 0
 --- !u!4 &744689994
 Transform:
@@ -1605,7 +1618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &897838584
 MonoBehaviour:
   m_ObjectHideFlags: 0

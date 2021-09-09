@@ -45,16 +45,4 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         uIManager.GameOver();
     }
-
-    private void Update()
-    {
-
-        if (Application.isEditor)
-        {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                GameOver();
-            }
-        }
-    }
 }
