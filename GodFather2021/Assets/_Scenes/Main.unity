@@ -1286,7 +1286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730188390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1}
+  m_LocalPosition: {x: 12.370001, y: 1, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1509458119}
@@ -1331,20 +1331,99 @@ MonoBehaviour:
   U_sprite: {fileID: 21300000, guid: 7c8f85da2e7e29f4cbe7d6b6e841a048, type: 3}
   Y_sprite: {fileID: 21300000, guid: e81adeb97964e6b4aa9b705285f6f241, type: 3}
   waveManagers:
-  - description: 1ere vague, rapide
-    timeBeforeWaveStart: 2
-    numberMime: 4
-    timeBetweenMime: 0.5
+  - description: vague1
+    timeBeforeWaveStart: 1
+    numberMime: 6
+    timeBetweenMime: 1
     spawnPosition: 0
     propChangeLetter: 0
     haveSameLetter: 0
-  - description: 2eme vague, lente
-    timeBeforeWaveStart: 10
-    numberMime: 6
-    timeBetweenMime: 2
-    spawnPosition: 3
-    propChangeLetter: 10
+  - description: Spam1
+    timeBeforeWaveStart: 1
+    numberMime: 3
+    timeBetweenMime: 0.3
+    spawnPosition: 1
+    propChangeLetter: 0
     haveSameLetter: 1
+  - description: vague2
+    timeBeforeWaveStart: 1
+    numberMime: 20
+    timeBetweenMime: 0.8
+    spawnPosition: 0
+    propChangeLetter: 0.2
+    haveSameLetter: 0
+  - description: spam2
+    timeBeforeWaveStart: 1
+    numberMime: 5
+    timeBetweenMime: 0.2
+    spawnPosition: 1
+    propChangeLetter: 0
+    haveSameLetter: 1
+  - description: spam3
+    timeBeforeWaveStart: 1
+    numberMime: 3
+    timeBetweenMime: 0.2
+    spawnPosition: 2
+    propChangeLetter: 0
+    haveSameLetter: 1
+  - description: 'Spam4
+
+'
+    timeBeforeWaveStart: 1
+    numberMime: 6
+    timeBetweenMime: 0.2
+    spawnPosition: 3
+    propChangeLetter: 0.2
+    haveSameLetter: 1
+  - description: vague3
+    timeBeforeWaveStart: 1
+    numberMime: 20
+    timeBetweenMime: 0.8
+    spawnPosition: 0
+    propChangeLetter: 0.5
+    haveSameLetter: 0
+  - description: spam5
+    timeBeforeWaveStart: 1
+    numberMime: 6
+    timeBetweenMime: 0.2
+    spawnPosition: 2
+    propChangeLetter: 0
+    haveSameLetter: 1
+  - description: vague4
+    timeBeforeWaveStart: 1
+    numberMime: 20
+    timeBetweenMime: 0.6
+    spawnPosition: 0
+    propChangeLetter: 0.6
+    haveSameLetter: 0
+  - description: spam6
+    timeBeforeWaveStart: 1
+    numberMime: 6
+    timeBetweenMime: 0.2
+    spawnPosition: 1
+    propChangeLetter: 0
+    haveSameLetter: 1
+  - description: vague5
+    timeBeforeWaveStart: 1
+    numberMime: 20
+    timeBetweenMime: 0.4
+    spawnPosition: 0
+    propChangeLetter: 0.3
+    haveSameLetter: 0
+  - description: spam7
+    timeBeforeWaveStart: 1
+    numberMime: 6
+    timeBetweenMime: 0.2
+    spawnPosition: 0
+    propChangeLetter: 0
+    haveSameLetter: 1
+  - description: vague6
+    timeBeforeWaveStart: 1
+    numberMime: 500
+    timeBetweenMime: 0.35
+    spawnPosition: 0
+    propChangeLetter: 0.7
+    haveSameLetter: 0
 --- !u!4 &744689994
 Transform:
   m_ObjectHideFlags: 0
@@ -1573,7 +1652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897838583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.79, y: 0.3, z: -1.2069132}
+  m_LocalPosition: {x: -7.52, y: 0.3, z: -1.2069132}
   m_LocalScale: {x: 1, y: 13, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1944,7 +2023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 0}
   rb: {fileID: 0}
-  scrollSpeed: -5
+  scrollSpeed: -8
 --- !u!212 &1053746479
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2545,6 +2624,8 @@ MonoBehaviour:
   pointsPerSec: 5
   currentScoreText: {fileID: 238042397}
   bestScoreText: {fileID: 1125028989}
+  multiplierTime: 10
+  isMimeWasKick: 0
 --- !u!4 &1200678210
 Transform:
   m_ObjectHideFlags: 0
@@ -2692,7 +2773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 0}
   rb: {fileID: 0}
-  scrollSpeed: -5
+  scrollSpeed: -8
 --- !u!212 &1213027410
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2968,7 +3049,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380740681}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 3.3, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3614,7 +3695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661746136}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.39, z: -1}
+  m_LocalPosition: {x: 12.37, y: -3.39, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1509458119}
@@ -3869,7 +3950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814536930}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.05, z: -1}
+  m_LocalPosition: {x: 12.37, y: -1.05, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1509458119}
