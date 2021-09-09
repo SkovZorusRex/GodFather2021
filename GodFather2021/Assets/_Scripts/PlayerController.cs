@@ -16,9 +16,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && !isMovingVer && transform.position.y != 3.5f)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && !isMovingVer && transform.position.y != 3.5f)
             StartCoroutine(MovePlayerVerticaly(up, 0.2f));
-        if (Input.GetKey(KeyCode.DownArrow) && !isMovingVer && transform.position.y != -3.5f)
+        if (Input.GetKeyDown(KeyCode.DownArrow) && !isMovingVer && transform.position.y != -3.5f)
             StartCoroutine(MovePlayerVerticaly(down, 0.2f));
         if (Input.GetKey(KeyCode.A) && !isMovingVer && !damaged)
             Damaged();
