@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 right = new Vector3(5.5f, 0, 0);
 
     public string currentLane = "Middle";
+    public Transform cloud;
     //private float timeToMove = 0.2f;
 
     void Update()
@@ -100,6 +101,7 @@ public class PlayerController : MonoBehaviour
         while (elapsedTime < timeToMove)
         {
             transform.position = Vector3.Lerp(originalPos, targetPos, (elapsedTime / timeToMove));
+            cloud.transform.position = Vector3.Lerp(cloud.transform.position,new Vector3(cloud.transform.position.x,targetPos.y,cloud.transform.position.z), (elapsedTime / (timeToMove*10)));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
