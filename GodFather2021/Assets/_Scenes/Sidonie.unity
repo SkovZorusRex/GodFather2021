@@ -22518,7 +22518,7 @@ GameObject:
   - component: {fileID: 1647102819}
   - component: {fileID: 1647102818}
   m_Layer: 0
-  m_Name: Hit
+  m_Name: FX_Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
