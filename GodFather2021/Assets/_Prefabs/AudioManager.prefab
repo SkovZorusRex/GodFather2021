@@ -44,9 +44,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0.1
+  - name: Damage
+    clip: {fileID: 8300000, guid: ddc6eec9e1dbe93429e8c9e1d15e0875, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Changement
+    clip: {fileID: 8300000, guid: 228eccbe2bdcf2f4eb9153ea88efdfc4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Paf
+    clip: {fileID: 8300000, guid: 077aa99b056cf1a4891f43f852d29640, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Foule
+    clip: {fileID: 8300000, guid: 52f9fb8af7573fe47bd73479e23635f1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Damage2
+    clip: {fileID: 8300000, guid: 37d38655eac091448885c7e97159f5c1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Merde
+    clip: {fileID: 8300000, guid: 95115e45ad924594db9b791e0d0e16d0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BarrezVous
+    clip: {fileID: 8300000, guid: f4bc9ab627abeeb47b8d9174fdc1d1e9, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Paf2
+    clip: {fileID: 8300000, guid: ec8aeed2e355d0b44a72c477457ca28d, type: 3}
+    volume: 0.5
+    pitch: 1
     loop: 0
     source: {fileID: 0}
