@@ -11,6 +11,9 @@ public class EnemySysteme : MonoBehaviour
     [Header ("Paramètre de déploiement")]
     public List<Transform> posPoint;
     public GameObject mimePrefab;
+    public GameObject obstaclePrefab;
+    public GameObject longObstaclePrefab;
+
 
     private Transform spawnPoint;
 
@@ -116,9 +119,46 @@ public class EnemySysteme : MonoBehaviour
     }
 
 
-    private IEnumerator SpawnObstacle(int numberLine, int whichLine)
+    private IEnumerator SpawnObstacle(ObstacleManager[] allObstacle)
     {
-        yield return null;
+        foreach(ObstacleManager a in allObstacle)
+        {
+            yield return new WaitForSeconds(a.timeStart);
+
+            for (int i = 0; i < a.numberObstacle; i++)
+            {
+                if (a.numberLineTaken == 1)
+                {
+                    if (a.whichLine == 0)
+                    {
+                        Instantiate(obstaclePrefab, posPoint[Random.Range(0, posPoint.Count)]);
+                    }
+                    else
+                    {
+                        Instantiate(obstaclePrefab, posPoint[a.whichLine - 1]);
+                    }
+                }
+                else
+                {
+                    if (a.whichLine == 0)
+                    {
+                        Instantiate(obstaclePrefab, posPoint[0]);
+                        Instantiate(obstaclePrefab, posPoint[2]);
+                    }
+                    else if (a.whichLine == 1)
+                    {
+                        Debug.LogWarning("whichLine = 1 + numberLineTaken = 2. L'obstacle sera placé sur le point le plus au possible");
+                        Instantiate(longObstaclePrefab, posPoint[1]);
+                    }
+                    else
+                    {
+                        Instantiate(longObstaclePrefab, posPoint[a.whichLine - 1]);
+                    }
+                }
+
+                yield return new WaitForSeconds(a.timeBetweenTwo);
+            }
+        }
     }
 
 
@@ -141,7 +181,7 @@ public class EnemySysteme : MonoBehaviour
 
             // Vague en elle même
             yield return StartCoroutine(SpawnMime(waveInfo.numberMime, waveInfo.timeBetweenMime, waveInfo.spawnPosition, waveInfo.haveSameLetter, waveInfo.propChangeLetter, waveInfo.propChangeLine));
-            yield return StartCoroutine(SpawnObstacle(waveInfo.numberLineTaken, waveInfo.whichLine));
+            yield return StartCoroutine(SpawnObstacle(waveInfo.obstacleArray));
         }
     }
 

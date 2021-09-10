@@ -807,6 +807,8 @@ MonoBehaviour:
   - {fileID: 523959244}
   - {fileID: 2060402473}
   mimePrefab: {fileID: 4278061911273181536, guid: 3b51d2d4567d7ba47a7f72006399bc06, type: 3}
+  obstaclePrefab: {fileID: 8665639972042264928, guid: ce5a36d4f0874584b84f8e9109140810, type: 3}
+  longObstaclePrefab: {fileID: 5539018819394762166, guid: 85033fd3f940f374fa573acf43b8e17d, type: 3}
   I_sprite: {fileID: 21300000, guid: 47f6fe1465876414eb2b20510ecb6622, type: 3}
   O_sprite: {fileID: 21300000, guid: 2bb30b4dfd9000a419329fe20afe223b, type: 3}
   U_sprite: {fileID: 21300000, guid: 258b17a3c840bf746849011550c13f48, type: 3}
@@ -820,6 +822,22 @@ MonoBehaviour:
     propChangeLetter: 0
     propChangeLine: 0
     haveSameLetter: 0
+    obstacleArray:
+    - timeStart: 1
+      timeBetweenTwo: 1
+      numberObstacle: 5
+      numberLineTaken: 1
+      whichLine: 0
+    - timeStart: 1
+      timeBetweenTwo: 0.2
+      numberObstacle: 10
+      numberLineTaken: 2
+      whichLine: 2
+    - timeStart: 1
+      timeBetweenTwo: 1
+      numberObstacle: 1
+      numberLineTaken: 2
+      whichLine: 1
 --- !u!4 &1136702035
 Transform:
   m_ObjectHideFlags: 0

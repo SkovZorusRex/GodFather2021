@@ -21,7 +21,5 @@ public class WaveManager
     public bool haveSameLetter;
 
     [Header("Obstacle")]
-    [Range(0, 2)]
-    public int numberLineTaken;
-    public int whichLine;
+    public ObstacleManager[] obstacleArray;
 }
