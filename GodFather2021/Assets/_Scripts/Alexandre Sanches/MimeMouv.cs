@@ -11,6 +11,7 @@ public class MimeMouv : MonoBehaviour
     public string currentLane;
     public ParticleSystem failHit;
     public ParticleSystem successHit;
+    public ParticleSystem changeSelf;
 
     [Header("Mouvement")]
     public float speed = 5;
@@ -40,6 +41,7 @@ public class MimeMouv : MonoBehaviour
     public float maxTorque;
     public float minTorque;
 
+    private int coup;
 
     private void Start()
     {
@@ -64,7 +66,9 @@ public class MimeMouv : MonoBehaviour
 
         if (changeLine)
         {
+            StartCoroutine(PlayFX(changeSelf));
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, newLine.position.y), step * 2);
+            currentLane = newLine.name;
         }
 
         if (Input.inputString.Contains(letter) && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange && playerController.currentLane == currentLane)
@@ -73,8 +77,13 @@ public class MimeMouv : MonoBehaviour
             {
                 StartCoroutine(PlayFX(successHit));
                 Death();
-                FindObjectOfType<AudioManager>().Play("Paf");
                 ScoreManager.Instance.isMimeWasKick = true;
+                coup = Random.Range(1, 10);
+                if (coup < 8) {
+                    FindObjectOfType<AudioManager>().Play("Paf");
+                }
+                else { FindObjectOfType<AudioManager>().Play("Paf2"); 
+                }
             }
         }
         else if ((!Input.inputString.Contains(letter) && Input.inputString != "") && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange && playerController.currentLane == currentLane)
@@ -99,6 +108,7 @@ public class MimeMouv : MonoBehaviour
             EnemySysteme.Instance.UpdateSprite(newLetter, this.gameObject);
             letter = newLetter;
             FindObjectOfType<AudioManager>().Play("Changement");
+            StartCoroutine(PlayFX(changeSelf));
         }
 
         if (newLine != null)
