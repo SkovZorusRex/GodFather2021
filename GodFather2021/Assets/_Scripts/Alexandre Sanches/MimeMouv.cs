@@ -75,7 +75,7 @@ public class MimeMouv : MonoBehaviour
                 StartCoroutine(PlayFX(successHit));
                 Death();
                 ScoreManager.Instance.isMimeWasKick = true;
-                coup = Random.Range(1, 10);
+                coup = Random.Range(1, 11);
                 if (coup < 8) {
                     FindObjectOfType<AudioManager>().Play("Paf");
                 }

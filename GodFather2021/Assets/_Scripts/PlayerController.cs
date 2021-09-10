@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private bool isMovingVer;
     private bool isMovingHor;
     private bool damaged;
+    private int derapage;
     private Vector3 originalPos, targetPos;
     private Vector3 up = new Vector3(0, 2.5f, 0);
     private Vector3 down = new Vector3(0, -2.5f, 0);
@@ -22,6 +23,13 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && !isMovingVer && transform.position.y != 1f)
         {
+            derapage = Random.Range(1, 11);
+            if (derapage <= 5) {
+                FindObjectOfType<AudioManager>().Play("Derapage1");
+            }
+            else { FindObjectOfType<AudioManager>().Play("Derapage2"); 
+            }
+
             StartCoroutine(MovePlayerVerticaly(up, 0.2f));
             if (currentLane == "Middle")
                 currentLane = "Upper";
@@ -30,6 +38,14 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && !isMovingVer && transform.position.y != -4f)
         {
+            derapage = Random.Range(1, 11);
+            if (derapage <= 5) {
+                FindObjectOfType<AudioManager>().Play("Derapage1");
+            }
+            else {
+                FindObjectOfType<AudioManager>().Play("Derapage2");
+            }
+
             StartCoroutine(MovePlayerVerticaly(down, 0.2f));
             if (currentLane == "Middle")
                 currentLane = "Lower";

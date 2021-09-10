@@ -92,3 +92,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Derapage1
+    clip: {fileID: 8300000, guid: 2ddb1d589923f4f40b1131b9cce4d200, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Derapage2
+    clip: {fileID: 8300000, guid: 3c635619d342c8b4fb3e6c039822025e, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
