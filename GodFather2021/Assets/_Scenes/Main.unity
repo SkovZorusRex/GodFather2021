@@ -1385,7 +1385,7 @@ MonoBehaviour:
   - {fileID: 1814536932}
   - {fileID: 1661746138}
   mimePrefab: {fileID: 4278061911273181536, guid: 3b51d2d4567d7ba47a7f72006399bc06, type: 3}
-  obstaclePrefab: {fileID: 0}
+  obstaclePrefab: {fileID: 8665639972042264928, guid: ce5a36d4f0874584b84f8e9109140810, type: 3}
   I_sprite: {fileID: 21300000, guid: 4ee28add46462b14db507a0814bdf487, type: 3}
   O_sprite: {fileID: 21300000, guid: 8604a21f196cef1418157421be678bed, type: 3}
   U_sprite: {fileID: 21300000, guid: 7c8f85da2e7e29f4cbe7d6b6e841a048, type: 3}
@@ -1399,9 +1399,19 @@ MonoBehaviour:
     propChangeLetter: 0
     propChangeLine: 0
     haveSameLetter: 0
-    obstacleArray: []
+    obstacleArray:
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 2
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 3
   - description: Spam1
-    timeBeforeWaveStart: 1
+    timeBeforeWaveStart: 0
     numberMime: 3
     timeBetweenMime: 0.3
     spawnPosition: 1
@@ -1415,9 +1425,19 @@ MonoBehaviour:
     timeBetweenMime: 0.8
     spawnPosition: 0
     propChangeLetter: 0.2
-    propChangeLine: 0
+    propChangeLine: 0.2
     haveSameLetter: 0
-    obstacleArray: []
+    obstacleArray:
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 2
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 3
   - description: spam2
     timeBeforeWaveStart: 1
     numberMime: 5
@@ -1426,7 +1446,17 @@ MonoBehaviour:
     propChangeLetter: 0
     propChangeLine: 0
     haveSameLetter: 1
-    obstacleArray: []
+    obstacleArray:
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 2
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 3
   - description: spam3
     timeBeforeWaveStart: 1
     numberMime: 3
@@ -1435,7 +1465,17 @@ MonoBehaviour:
     propChangeLetter: 0
     propChangeLine: 0
     haveSameLetter: 1
-    obstacleArray: []
+    obstacleArray:
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 1
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 3
   - description: 'Spam4
 
 '
@@ -1443,7 +1483,7 @@ MonoBehaviour:
     numberMime: 6
     timeBetweenMime: 0.2
     spawnPosition: 3
-    propChangeLetter: 0.2
+    propChangeLetter: 0
     propChangeLine: 0
     haveSameLetter: 1
     obstacleArray: []
@@ -1452,12 +1492,22 @@ MonoBehaviour:
     numberMime: 20
     timeBetweenMime: 0.8
     spawnPosition: 0
-    propChangeLetter: 0.5
-    propChangeLine: 0
+    propChangeLetter: 0
+    propChangeLine: 1
     haveSameLetter: 0
-    obstacleArray: []
+    obstacleArray:
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 1
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 3
   - description: spam5
-    timeBeforeWaveStart: 1
+    timeBeforeWaveStart: 0
     numberMime: 6
     timeBetweenMime: 0.2
     spawnPosition: 2
@@ -1471,11 +1521,21 @@ MonoBehaviour:
     timeBetweenMime: 0.6
     spawnPosition: 0
     propChangeLetter: 0.6
-    propChangeLine: 0
+    propChangeLine: 0.3
     haveSameLetter: 0
-    obstacleArray: []
+    obstacleArray:
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 2
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 3
   - description: spam6
-    timeBeforeWaveStart: 1
+    timeBeforeWaveStart: 0
     numberMime: 6
     timeBetweenMime: 0.2
     spawnPosition: 1
@@ -1489,14 +1549,24 @@ MonoBehaviour:
     timeBetweenMime: 0.4
     spawnPosition: 0
     propChangeLetter: 0.3
-    propChangeLine: 0
+    propChangeLine: 0.1
     haveSameLetter: 0
-    obstacleArray: []
+    obstacleArray:
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 1
+    - timeStart: 0
+      timeBetweenTwo: 0
+      numberObstacle: 1
+      numberLineTaken: 1
+      whichLine: 3
   - description: spam7
     timeBeforeWaveStart: 1
     numberMime: 6
     timeBetweenMime: 0.2
-    spawnPosition: 0
+    spawnPosition: 2
     propChangeLetter: 0
     propChangeLine: 0
     haveSameLetter: 1
@@ -1507,7 +1577,7 @@ MonoBehaviour:
     timeBetweenMime: 0.35
     spawnPosition: 0
     propChangeLetter: 0.7
-    propChangeLine: 0
+    propChangeLine: 0.5
     haveSameLetter: 0
     obstacleArray: []
 --- !u!4 &744689994
