@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void SecondDamage()
+    public void SecondDamage()
     {
         GameManager.instance.GameOver();
         FindObjectOfType<AudioManager>().Play("Merde");
