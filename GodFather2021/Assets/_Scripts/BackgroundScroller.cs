@@ -11,7 +11,7 @@ public class BackgroundScroller : MonoBehaviour
     private float width;
 
     [SerializeField]
-    private float scrollSpeed = -2f;
+    private float scrollSpeed = -5f;
 
     void Start()
     {

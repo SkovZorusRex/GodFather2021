@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 right = new Vector3(5.5f, 0, 0);
 
     public string currentLane = "Middle";
+    public Transform cloud;
     //private float timeToMove = 0.2f;
 
     void Update()
@@ -47,18 +48,21 @@ public class PlayerController : MonoBehaviour
     {
         if (damaged)
         {
+            FindObjectOfType<AudioManager>().Play("Damage");
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             Invoke("SecondDamage", 0.5f);
         }
         else if (isMovingVer)
         {
             transform.position = targetPos;
+            FindObjectOfType<AudioManager>().Play("Damage");
             damaged = true;
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             StartCoroutine(Recup(3));
         }
         else 
         {
+            FindObjectOfType<AudioManager>().Play("Damage");
             damaged = true;
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             StartCoroutine(Recup(3));
@@ -97,6 +101,7 @@ public class PlayerController : MonoBehaviour
         while (elapsedTime < timeToMove)
         {
             transform.position = Vector3.Lerp(originalPos, targetPos, (elapsedTime / timeToMove));
+            cloud.transform.position = Vector3.Lerp(cloud.transform.position,new Vector3(cloud.transform.position.x,targetPos.y,cloud.transform.position.z), (elapsedTime / (timeToMove*10)));
             elapsedTime += Time.deltaTime;
             yield return null;
         }
