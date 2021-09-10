@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 originalPos, targetPos;
     private Vector3 up = new Vector3(0, 2.5f, 0);
     private Vector3 down = new Vector3(0, -2.5f, 0);
-    private Vector3 left = new Vector3(-5.5f, 0, 0);
-    private Vector3 right = new Vector3(5.5f, 0, 0);
+    private Vector3 left = new Vector3(-4f, 0, 0);
+    private Vector3 right = new Vector3(4f, 0, 0);
 
     public string currentLane = "Middle";
     public Transform cloud;
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         if (damaged)
         {
-            FindObjectOfType<AudioManager>().Play("Damage");
+            FindObjectOfType<AudioManager>().Play("Damage2");
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             Invoke("SecondDamage", 0.5f);
             StartCoroutine(CreateHit());
@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
     void SecondDamage()
     {
         GameManager.instance.GameOver();
+        FindObjectOfType<AudioManager>().Play("Merde");
     }
 
     private IEnumerator MovePlayerVerticaly(Vector3 direction, float timeToMove)
