@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public ParticleSystem hit;
     private bool isMovingVer;
     private bool isMovingHor;
     private bool damaged;
@@ -51,12 +52,14 @@ public class PlayerController : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("Damage");
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             Invoke("SecondDamage", 0.5f);
+            StartCoroutine(CreateHit());
         }
         else if (isMovingVer)
         {
             transform.position = targetPos;
             FindObjectOfType<AudioManager>().Play("Damage");
             damaged = true;
+            StartCoroutine(CreateHit());
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             StartCoroutine(Recup(3));
         }
@@ -64,6 +67,7 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play("Damage");
             damaged = true;
+            StartCoroutine(CreateHit());
             StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
             StartCoroutine(Recup(3));
         }
@@ -130,6 +134,14 @@ public class PlayerController : MonoBehaviour
         transform.position = targetPos;
 
         isMovingVer = false;
+    }
+
+    IEnumerator CreateHit ()
+    {
+        Debug.Log("hit!");
+        hit.Play();
+        yield return new WaitForSeconds(0.5f);
+        hit.Stop();
     }
 
 
