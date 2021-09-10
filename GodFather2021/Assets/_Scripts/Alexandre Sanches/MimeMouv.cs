@@ -73,6 +73,7 @@ public class MimeMouv : MonoBehaviour
             {
                 StartCoroutine(PlayFX(successHit));
                 Death();
+                FindObjectOfType<AudioManager>().Play("Paf");
                 ScoreManager.Instance.isMimeWasKick = true;
             }
         }
@@ -97,6 +98,7 @@ public class MimeMouv : MonoBehaviour
             uiLetters.text = newLetter.ToUpper();
             EnemySysteme.Instance.UpdateSprite(newLetter, this.gameObject);
             letter = newLetter;
+            FindObjectOfType<AudioManager>().Play("Changement");
         }
 
         if (newLine != null)
