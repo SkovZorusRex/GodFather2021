@@ -33,6 +33,7 @@ public class MimeMouv : MonoBehaviour
 
 
     [Header("Death Settings")]
+    public float timeBeforDeath = 5;
     public float maxUpForce;
     public float minUpForce;
     public float maxAngle;
@@ -42,7 +43,7 @@ public class MimeMouv : MonoBehaviour
 
     private void Start()
     {
-        endPos = new Vector3(-transform.position.x * 5, transform.position.y);
+        endPos = new Vector3(-20, transform.position.y);
 
         rb = gameObject.GetComponent<Rigidbody2D>();
         colliderMime = gameObject.GetComponent<Collider2D>();
@@ -100,12 +101,12 @@ public class MimeMouv : MonoBehaviour
 
         if (newLine != null)
         {
-            endPos = new Vector3(-transform.position.x, newLine.position.y);
+            endPos = new Vector3(-20, newLine.position.y);
             changeLine = true;
         }
 
         // Destruction du gomeObject après un certain temps
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(5);
         Destroy(gameObject);
     }
 

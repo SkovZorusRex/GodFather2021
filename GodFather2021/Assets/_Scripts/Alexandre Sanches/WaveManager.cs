@@ -19,4 +19,9 @@ public class WaveManager
     [Range (0,1)]
     [Tooltip("Proba changement ligne")] public float propChangeLine = 0;
     public bool haveSameLetter;
+
+    [Header("Obstacle")]
+    [Range(0, 2)]
+    public int numberLineTaken;
+    public int whichLine;
 }

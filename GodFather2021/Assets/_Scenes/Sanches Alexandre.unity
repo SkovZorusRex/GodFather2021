@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31997122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0327861, y: 0.9931507, z: 0.33756793}
+  m_LocalPosition: {x: -17.01, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 163804140}
@@ -247,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 163804139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.28, y: 2.0068493, z: -0.33756793}
+  m_LocalPosition: {x: 40.49, y: 3, z: -0.33756793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 31997123}
@@ -411,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523959243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.20721, y: -0.9931507, z: -0.33756793}
+  m_LocalPosition: {x: 40.417217, y: 0, z: -0.33756793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 31997123}
@@ -818,7 +818,7 @@ MonoBehaviour:
     timeBetweenMime: 0.5
     spawnPosition: 0
     propChangeLetter: 0
-    propChangeLine: 1
+    propChangeLine: 0
     haveSameLetter: 0
 --- !u!4 &1136702035
 Transform:
@@ -859,7 +859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060402472}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.28, y: -3.9931507, z: -0.33756793}
+  m_LocalPosition: {x: 40.49001, y: -3, z: -0.33756793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 31997123}

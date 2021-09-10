@@ -9,7 +9,7 @@ public class EnemySysteme : MonoBehaviour
     private PlayerController playerController;
 
     [Header ("Paramètre de déploiement")]
-    public Transform[] posPoint;
+    public List<Transform> posPoint;
     public GameObject mimePrefab;
 
     private Transform spawnPoint;
@@ -49,7 +49,7 @@ public class EnemySysteme : MonoBehaviour
         }
 
         // Si isSameLetter est vrai => ne changera pas
-        letterForUI = ChoiseLetter();
+        letterForUI = ChoiseLetter(letters);
 
 
         // Apparition des Mimes 
@@ -57,7 +57,7 @@ public class EnemySysteme : MonoBehaviour
 
             // Spawn aléatoirement
             if (isSameSpawn == 0) {
-                spawnPoint = posPoint[Random.Range(0, posPoint.Length)];
+                spawnPoint = posPoint[Random.Range(0, posPoint.Count)];
             }
             
             // Création du mime sur la scène
@@ -69,7 +69,7 @@ public class EnemySysteme : MonoBehaviour
             // Choix aléatoir de la lettre et envoie l'info au mime
             if (!isSameLetter)
             {
-                letterForUI = ChoiseLetter();
+                letterForUI = ChoiseLetter(letters);
             }
             mimeMouv.letter = letterForUI;
             UpdateSprite(letterForUI, mimeInt);
@@ -79,13 +79,32 @@ public class EnemySysteme : MonoBehaviour
             // Chance de changer aléatoire de la lettre et/ou l'emplacement + envoie l'info au mime
             if (ChanceSwitch(propChangeValue))
             {
-                string newletterForUI = ChoiseLetter();
+                string newletterForUI = "";
+                foreach (char a in letters)
+                {
+                    if(a + "" != letterForUI)
+                    {
+                        newletterForUI += a;
+                    }
+                }
+                newletterForUI = ChoiseLetter(newletterForUI);
                 mimeMouv.newLetter = newletterForUI;
             }
 
             if (ChanceSwitch(propChangeLine))
             {
-                Transform newSpawnPoint = posPoint[Random.Range(0, posPoint.Length)];
+                List<Transform> spawnCanBeTake = new List<Transform>();
+                // copy de la liste
+                foreach (Transform a in posPoint)
+                {
+                    if(a.name != mimeMouv.currentLane)
+                    {
+                        spawnCanBeTake.Add(a);
+                    }
+                }
+
+                // Nouveau spawn
+                Transform newSpawnPoint = spawnCanBeTake[Random.Range(0, spawnCanBeTake.Count)];
                 mimeMouv.newLine = newSpawnPoint;
             }
 
@@ -97,14 +116,18 @@ public class EnemySysteme : MonoBehaviour
     }
 
 
+    private IEnumerator SpawnObstacle(int numberLine, int whichLine)
+    {
+        yield return null;
+    }
+
+
     private bool ChanceSwitch(float chanceValue)
     {
         if (chanceValue != 0f && Random.Range(0f, 1f) <= chanceValue)
         {
-            Debug.Log("true");
             return true;
         }
-        //Debug.Log("false " + chanceValue);
         return false;
     }
 
@@ -118,14 +141,15 @@ public class EnemySysteme : MonoBehaviour
 
             // Vague en elle même
             yield return StartCoroutine(SpawnMime(waveInfo.numberMime, waveInfo.timeBetweenMime, waveInfo.spawnPosition, waveInfo.haveSameLetter, waveInfo.propChangeLetter, waveInfo.propChangeLine));
+            yield return StartCoroutine(SpawnObstacle(waveInfo.numberLineTaken, waveInfo.whichLine));
         }
     }
 
 
     // Permet de choisir aléatoirement une lettre depuis une liste prédéfinie
-    public string ChoiseLetter()
+    public string ChoiseLetter(string choiseLetters)
     {
-        char c = letters[Random.Range(0, letters.Length)];
+        char c = choiseLetters[Random.Range(0, choiseLetters.Length)];
         return c + "";
     }
 
@@ -133,19 +157,20 @@ public class EnemySysteme : MonoBehaviour
     // Permet de changer le visuel du mime
     public void UpdateSprite(string character, GameObject instant)
     {
+        SpriteRenderer sr = instant.gameObject.GetComponent<SpriteRenderer>();
         switch (character)
         {
             case "i":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = I_sprite;
+                sr.sprite = I_sprite;
                 break;
             case "o":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = O_sprite;
+                sr.sprite = O_sprite;
                 break;
             case "u":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = U_sprite;
+                sr.sprite = U_sprite;
                 break;
             case "y":
-                instant.gameObject.GetComponent<SpriteRenderer>().sprite = Y_sprite;
+                sr.sprite = Y_sprite;
                 break;
         }
     }
