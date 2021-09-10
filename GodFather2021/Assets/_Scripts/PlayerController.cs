@@ -52,13 +52,6 @@ public class PlayerController : MonoBehaviour
             else
                 currentLane = "Middle";
         }
-        if (Input.GetKey(KeyCode.A) && !isMovingVer && !damaged)
-            Damaged();
-        else if (Input.GetKey(KeyCode.A) && damaged && !isMovingVer)
-        {
-            StartCoroutine(MovePlayerHorizontaly(left, 0.2f));
-            Invoke("SecondDamage", 0.5f);
-        }
     }
 
     public void Damaged()
@@ -108,6 +101,7 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.instance.GameOver();
         FindObjectOfType<AudioManager>().Play("Merde");
+        FindObjectOfType<AudioManager>().Stop("Foule");
     }
 
     private IEnumerator MovePlayerVerticaly(Vector3 direction, float timeToMove)
