@@ -12,7 +12,6 @@ public class EnemySysteme : MonoBehaviour
     public List<Transform> posPoint;
     public GameObject mimePrefab;
     public GameObject obstaclePrefab;
-    public GameObject longObstaclePrefab;
 
 
     private Transform spawnPoint;
@@ -148,11 +147,14 @@ public class EnemySysteme : MonoBehaviour
                     else if (a.whichLine == 1)
                     {
                         Debug.LogWarning("whichLine = 1 + numberLineTaken = 2. L'obstacle sera placé sur le point le plus au possible");
-                        Instantiate(longObstaclePrefab, posPoint[1]);
+                        Instantiate(obstaclePrefab, posPoint[1]);
+                        Instantiate(obstaclePrefab, posPoint[0]);
+
                     }
                     else
                     {
-                        Instantiate(longObstaclePrefab, posPoint[a.whichLine - 1]);
+                        Instantiate(obstaclePrefab, posPoint[a.whichLine - 1]);
+                        Instantiate(obstaclePrefab, posPoint[a.whichLine - 2]);
                     }
                 }
 
