@@ -13,8 +13,6 @@ public class EnemySysteme : MonoBehaviour
     public GameObject mimePrefab;
 
     private Transform spawnPoint;
-    private List<Transform> spawnCanBeTake = new List<Transform>();
-    private int randomeSpawn;
 
     private string letters = "iouy"; // ABCDEFGHIJKLMNOPQRSTUVWXYZ
     private string letterForUI;
@@ -51,7 +49,7 @@ public class EnemySysteme : MonoBehaviour
         }
 
         // Si isSameLetter est vrai => ne changera pas
-        letterForUI = ChoiseLetter();
+        letterForUI = ChoiseLetter(letters);
 
 
         // Apparition des Mimes 
@@ -59,8 +57,7 @@ public class EnemySysteme : MonoBehaviour
 
             // Spawn aléatoirement
             if (isSameSpawn == 0) {
-                randomeSpawn = Random.Range(0, posPoint.Count);
-                spawnPoint = posPoint[randomeSpawn];
+                spawnPoint = posPoint[Random.Range(0, posPoint.Count)];
             }
             
             // Création du mime sur la scène
@@ -72,7 +69,7 @@ public class EnemySysteme : MonoBehaviour
             // Choix aléatoir de la lettre et envoie l'info au mime
             if (!isSameLetter)
             {
-                letterForUI = ChoiseLetter();
+                letterForUI = ChoiseLetter(letters);
             }
             mimeMouv.letter = letterForUI;
             UpdateSprite(letterForUI, mimeInt);
@@ -82,19 +79,23 @@ public class EnemySysteme : MonoBehaviour
             // Chance de changer aléatoire de la lettre et/ou l'emplacement + envoie l'info au mime
             if (ChanceSwitch(propChangeValue))
             {
-                string newletterForUI = ChoiseLetter();
+                string newletterForUI = "";
+                foreach (char a in letters)
+                {
+                    if(a + "" != letterForUI)
+                    {
+                        newletterForUI += a;
+                    }
+                }
+                newletterForUI = ChoiseLetter(newletterForUI);
                 mimeMouv.newLetter = newletterForUI;
             }
 
             if (ChanceSwitch(propChangeLine))
-            {                
-                if(spawnCanBeTake != null)
-                {
-                    spawnCanBeTake.Clear();
-                }
-
+            {
+                List<Transform> spawnCanBeTake = new List<Transform>();
                 // copy de la liste
-                foreach(Transform a in posPoint)
+                foreach (Transform a in posPoint)
                 {
                     if(a.name != mimeMouv.currentLane)
                     {
@@ -112,6 +113,12 @@ public class EnemySysteme : MonoBehaviour
         }
 
         // Autorisation de commencer la prochiane vague
+    }
+
+
+    private IEnumerator SpawnObstacle(int numberLine, int whichLine)
+    {
+        yield return null;
     }
 
 
@@ -134,14 +141,15 @@ public class EnemySysteme : MonoBehaviour
 
             // Vague en elle même
             yield return StartCoroutine(SpawnMime(waveInfo.numberMime, waveInfo.timeBetweenMime, waveInfo.spawnPosition, waveInfo.haveSameLetter, waveInfo.propChangeLetter, waveInfo.propChangeLine));
+            yield return StartCoroutine(SpawnObstacle(waveInfo.numberLineTaken, waveInfo.whichLine));
         }
     }
 
 
     // Permet de choisir aléatoirement une lettre depuis une liste prédéfinie
-    public string ChoiseLetter()
+    public string ChoiseLetter(string choiseLetters)
     {
-        char c = letters[Random.Range(0, letters.Length)];
+        char c = choiseLetters[Random.Range(0, choiseLetters.Length)];
         return c + "";
     }
 

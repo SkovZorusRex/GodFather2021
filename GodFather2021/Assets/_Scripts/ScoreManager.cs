@@ -75,6 +75,11 @@ public class ScoreManager : MonoBehaviour
         currentScore += amount;
     }
 
+    public void RemoveScore(int amount)
+    {
+        currentScore -= amount;
+    }
+
     public void ChangeMultiplier(float newValue)
     {
         multiplier = newValue;

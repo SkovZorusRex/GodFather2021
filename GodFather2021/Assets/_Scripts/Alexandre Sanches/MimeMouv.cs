@@ -9,18 +9,22 @@ public class MimeMouv : MonoBehaviour
     public float playerInputRange = 2f;
 
     public string currentLane;
+    public ParticleSystem failHit;
+    public ParticleSystem successHit;
 
-    [Header ("Mouvement")]
+    [Header("Mouvement")]
     public float speed = 5;
 
     private Rigidbody2D rb;
     private Collider2D colliderMime;
 
-    [Header ("Display")]
+    private bool isAlive = true;
+
+    [Header("Display")]
     public float wait = 1f;
     public Text uiLetters;
 
-    
+
     public string letter;
     public string newLetter;
     public Transform newLine;
@@ -63,14 +67,22 @@ public class MimeMouv : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, newLine.position.y), step * 2);
         }
 
-        if(Input.inputString.Contains(letter) && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange && playerController.currentLane == currentLane)
+        if (Input.inputString.Contains(letter) && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange && playerController.currentLane == currentLane)
         {
-            Death();
-            ScoreManager.Instance.isMimeWasKick = true;
+            if (isAlive)
+            {
+                StartCoroutine(PlayFX(successHit));
+                Death();
+                ScoreManager.Instance.isMimeWasKick = true;
+            }
         }
-        if (Application.isEditor && Input.GetKeyDown(KeyCode.E))
+        else if ((!Input.inputString.Contains(letter) && Input.inputString != "") && Vector2.Distance(playerController.transform.position, transform.position) <= playerInputRange && playerController.currentLane == currentLane)
         {
-            Death();
+            if (isAlive)
+            {
+                isAlive = false;
+                StartCoroutine(PlayFX(failHit));
+            }
         }
     }
 
@@ -87,9 +99,9 @@ public class MimeMouv : MonoBehaviour
             letter = newLetter;
         }
 
-        if(newLine != null)
+        if (newLine != null)
         {
-            endPos = new Vector3(-transform.position.x, newLine.position.y);
+            endPos = new Vector3(-20, newLine.position.y);
             changeLine = true;
         }
 
@@ -101,21 +113,29 @@ public class MimeMouv : MonoBehaviour
 
     public void Death()
     {
+        isAlive = false;
         colliderMime.enabled = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.gravityScale = 1;
         rb.drag = 1;
 
-        rb.AddForce(new Vector2(Random.Range(minUpForce,maxUpForce), Random.Range(-maxAngle,maxAngle)));
+        rb.AddForce(new Vector2(Random.Range(minUpForce, maxUpForce), Random.Range(-maxAngle, maxAngle)));
         rb.AddTorque(Random.Range(maxTorque, minTorque));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
             playerController.Damaged();
             Death();
         }
+    }
+
+    private IEnumerator PlayFX(ParticleSystem ps)
+    {
+        ps.Play();
+        yield return new WaitForSeconds(0.5f);
+        ps.Stop();
     }
 }

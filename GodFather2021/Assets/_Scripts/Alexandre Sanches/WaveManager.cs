@@ -15,8 +15,13 @@ public class WaveManager
     public float timeBetweenMime;
     public int spawnPosition = 0;
     [Range (0,1)]
-    public float propChangeLetter = 0;
+    [Tooltip("Proba changement lettre")] public float propChangeLetter = 0;
     [Range (0,1)]
-    public float propChangeLine = 0;
+    [Tooltip("Proba changement ligne")] public float propChangeLine = 0;
     public bool haveSameLetter;
+
+    [Header("Obstacle")]
+    [Range(0, 2)]
+    public int numberLineTaken;
+    public int whichLine;
 }
