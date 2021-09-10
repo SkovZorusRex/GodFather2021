@@ -310,7 +310,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hit: {fileID: 2072247951}
   currentLane: Middle
-  cloud: {fileID: 2058796195}
 --- !u!50 &154082598
 Rigidbody2D:
   serializedVersion: 4
@@ -1491,7 +1490,6 @@ MonoBehaviour:
   - {fileID: 1661746138}
   mimePrefab: {fileID: 4278061911273181536, guid: 3b51d2d4567d7ba47a7f72006399bc06, type: 3}
   obstaclePrefab: {fileID: 8665639972042264928, guid: ce5a36d4f0874584b84f8e9109140810, type: 3}
-  longObstaclePrefab: {fileID: 5539018819394762166, guid: 85033fd3f940f374fa573acf43b8e17d, type: 3}
   I_sprite: {fileID: 21300000, guid: 4ee28add46462b14db507a0814bdf487, type: 3}
   O_sprite: {fileID: 21300000, guid: 8604a21f196cef1418157421be678bed, type: 3}
   U_sprite: {fileID: 21300000, guid: 7c8f85da2e7e29f4cbe7d6b6e841a048, type: 3}
